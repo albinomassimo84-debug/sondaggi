@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Checklist</title>
+
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background:white;
+      font-family:'Segoe UI', sans-serif;
+      padding:20px;
+    }
+
+    .container{
+      width:380px;
+    }
+
+    /* HERO (SCRITTA) - BLU VIOLA */
+    .hero-text{
+      text-align:center;
+      margin-bottom:20px;
+      background: linear-gradient(135deg,#6a11cb,#2575fc);
+      padding:16px;
+      border-radius:18px;
+      box-shadow:0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    .hero-text h1{
+      font-size:28px;
+      font-weight:800;
+      color:white;
+      margin-bottom:6px;
+    }
+
+    .hero-text p{
+      font-size:14px;
+      color:white;
+      opacity:0.9;
+    }
+
+    /* WALLET - ARANCIONE ROSSO */
+    .wallet{
+      background:linear-gradient(135deg,#ff9966,#ff5e62);
+      color:white;
+      border-radius:20px;
+      padding:18px 22px;
+      margin-bottom:20px;
+      box-shadow:0 8px 20px rgba(0,0,0,0.15);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+    }
+
+    .wallet .left{
+      display:flex;
+      align-items:center;
+      gap:15px;
+    }
+
+    .wallet i{
+      font-size:32px;
+    }
+
+    .wallet .title{
+      font-size:14px;
+      opacity:0.9;
+    }
+
+    .wallet .amount{
+      font-size:28px;
+      font-weight:bold;
+    }
+
+    /* CHECKLIST - VERDE BLU */
+    .checklist{
+      background:linear-gradient(135deg,#00c6ff,#0072ff);
+      border-radius:22px;
+      padding:30px;
+      box-shadow:0 10px 25px rgba(0,0,0,0.15);
+      color:white;
+    }
+
+    .checklist h2{
+      text-align:center;
+      margin-bottom:25px;
+      font-size:30px;
+    }
+
+    .task{
+      background:rgba(255,255,255,0.15);
+      padding:15px;
+      border-radius:14px;
+      margin-bottom:15px;
+      display:flex;
+      align-items:center;
+      transition:0.3s;
+    }
+
+    .task:hover{
+      transform:translateX(5px);
+      background:rgba(255,255,255,0.25);
+    }
+
+    .task input[type="checkbox"]{
+      appearance:none;
+      width:24px;
+      height:24px;
+      border:2px solid white;
+      border-radius:8px;
+      margin-right:15px;
+      cursor:pointer;
+      position:relative;
+      transition:0.3s;
+    }
+
+    .task input[type="checkbox"]:checked{
+      background:#00ffb3;
+      border-color:#00ffb3;
+    }
+
+    .task input[type="checkbox"]:checked::after{
+      content:"✓";
+      color:#222;
+      font-weight:bold;
+      position:absolute;
+      top:1px;
+      left:5px;
+      font-size:15px;
+    }
+
+    .task label{
+      font-size:18px;
+      cursor:pointer;
+    }
+
+    .task input:checked + label{
+      text-decoration:line-through;
+      opacity:0.7;
+    }
+
+    .footer{
+      text-align:center;
+      margin-top:20px;
+      font-size:14px;
+      opacity:0.9;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- HERO -->
+    <div class="hero-text">
+      <h1>Nuovi sondaggi in arrivo</h1>
+    </div>
+
+    <!-- WALLET -->
+    <div class="wallet">
+      <div class="left">
+        <i class="fa-solid fa-wallet"></i>
+
+        <div>
+          <div class="title">Saldo disponibile</div>
+          <div class="amount">€ 0.00</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHECKLIST -->
+    <div class="checklist">
+      <h2>Checklist</h2>
+
+      <div class="task">
+        <input type="checkbox" id="task1">
+        <label for="task1">Viaggi e Vacanze</label>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" id="task2">
+        <label for="task2">Alimentazione e Stile di Vita</label>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" id="task3">
+        <label for="task3">Sport e Tempo Libero</label>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" id="task4">
+        <label for="task4">Sondaggio sulle Abitudini e gli Interessi dei Giovani</label>
+      </div>
+
+	<div class="task">
+        <input type="checkbox" id="task4">
+        <label for="task4">Abitudini digitali e stile di vita 2026</label>
+      </div>
+	  
+	<div class="task">
+        <input type="checkbox" id="task4">
+        <label for="task4">Film e cinema</label>
+      </div>
+	 
+    </div>
+
+  </div>
+
+  <script>
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+    checkboxes.forEach((checkbox) => {
+      const savedState = localStorage.getItem(checkbox.id);
+
+      if (savedState === "true") {
+        checkbox.checked = true;
+      }
+
+      checkbox.addEventListener("change", () => {
+        localStorage.setItem(checkbox.id, checkbox.checked);
+      });
+    });
+  </script>
+
+</body>
+</html>
